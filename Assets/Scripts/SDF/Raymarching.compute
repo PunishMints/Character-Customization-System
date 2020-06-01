@@ -1,4 +1,4 @@
-#pragma kernel CSMain
+﻿#pragma kernel CSMain
 
 Texture2D<float4> Source;
 RWTexture2D<float4> Destination;
@@ -51,9 +51,10 @@ float TorusDistance(float3 eye, float3 centre, float r1, float r2)
     return length(q)-r2;
 }
 
+// Bound, has errors regarding hieght
 float PrismDistance(float3 eye, float3 centre, float2 h) {
     float3 q = abs(eye - centre);
-    return max(q.z - h.y, max(q.x * 0.866025 + eye.y * 0.5, -eye.y) - h.x * 0.5);
+    return max(q.z - h.y, max(q.x * 0.866025 + (eye.y-centre.y) * 0.5, -1 * (eye.y-centre.y) ) - h.x * 0.5);
 }
 
 float CylinderDistance(float3 eye, float3 centre, float2 h) {
