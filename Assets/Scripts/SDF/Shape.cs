@@ -5,8 +5,8 @@ using UnityEngine;
 public class Shape : MonoBehaviour
 {
 
-    public enum ShapeType {Sphere,Cube,Torus,Prism,Cylinder,Cone};
-    public enum Operation {None, Blend, Cut,Mask}
+    public enum ShapeType {Sphere,Cube,Torus,Prism,Cylinder,HexagonalPrism};
+    public enum Operation {None, Blend, Cut, Mask}
 
     public ShapeType shapeType;
     public Operation operation;
@@ -18,6 +18,7 @@ public class Shape : MonoBehaviour
 
     public Vector3 Position {
         get {
+            
             return transform.position;
         }
     }

@@ -62,7 +62,15 @@ float CylinderDistance(float3 eye, float3 centre, float2 h) {
     return min(max(d.x, d.y), 0.0) + length(max(d, 0.0));
 }
 
-//float PyramidDistance
+float HexagonalPrismDistance(float3 eye, float3 centre, float2 h) {
+    float3 k = float3(-0.8660254, 0.5, 0.57735);
+    float3 p = abs(eye-centre);
+    p.xy -= 2.0 * min(dot(k.xy, p.xy), 0.0) * k.xy;
+    float2 d = float2(
+        length(p.xy - float2(clamp(p.x, -k.z * h.x, k.z * h.x), h.x)) * sign(p.y - h.x),
+        p.z - h.y);
+    return min(max(d.x, d.y), 0.0) + length(max(d, 0.0));
+}
 
 Ray CreateRay(float3 origin, float3 direction) {
     Ray ray;
@@ -142,6 +150,9 @@ float GetShapeDistance(Shape shape, float3 eye) {
 	else if (shape.shapeType == 4) {
 		return CylinderDistance(eye, shape.position, shape.size);
 	}
+    else if (shape.shapeType == 5) {
+        return HexagonalPrismDistance(eye, shape.position, shape.size);
+    }
     return maxDst;
 }
 
