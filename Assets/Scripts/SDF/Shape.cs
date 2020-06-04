@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Shape : MonoBehaviour
@@ -16,10 +18,18 @@ public class Shape : MonoBehaviour
     [HideInInspector]
     public int numChildren;
 
-    public Vector3 Position {
+    public Vector3 Position 
+    {
         get {
-            
             return transform.position;
+        }
+    }
+
+    public Quaternion Rotation
+    {
+        get
+        {
+            return transfrom.rotation;
         }
     }
 

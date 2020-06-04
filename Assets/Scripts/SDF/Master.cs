@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using UnityEngine;
 
 [ExecuteInEditMode, ImageEffectAllowedInSceneView]
@@ -47,7 +50,7 @@ public class Master : MonoBehaviour {
         for (int i = 0; i < allShapes.Count; i++) {
             // Add top-level shapes (those without a parent)
             if (allShapes[i].transform.parent == null) {
-
+               
                 Transform parentShape = allShapes[i].transform;
                 orderedShapes.Add (allShapes[i]);
                 allShapes[i].numChildren = parentShape.childCount;
@@ -67,7 +70,7 @@ public class Master : MonoBehaviour {
             var s = orderedShapes[i];
             Vector3 col = new Vector3 (s.colour.r, s.colour.g, s.colour.b);
             shapeData[i] = new ShapeData () {
-                position = s.Position,
+                position = s.Position, rotation = s.Rotation,
                 scale = s.Scale, colour = col,
                 shapeType = (int) s.shapeType,
                 operation = (int) s.operation,
@@ -105,6 +108,7 @@ public class Master : MonoBehaviour {
 
     struct ShapeData {
         public Vector3 position;
+        public Quaternion rotation;
         public Vector3 scale;
         public Vector3 colour;
         public int shapeType;

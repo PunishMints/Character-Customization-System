@@ -14,7 +14,6 @@ static const float epsilon = 0.001f;
 static const float shadowBias = epsilon * 50;
 
 struct Shape {
-    
     float3 position;
     float3 size;
     float3 colour;
