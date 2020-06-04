@@ -8,7 +8,7 @@ public class Shape : MonoBehaviour
 {
 
     public enum ShapeType {Sphere,Cube,Torus,Prism,Cylinder,HexagonalPrism};
-    public enum Operation {None, Blend, Cut, Mask}
+    public enum Operation {None, Blend, Cut, Mask, Experimental}
 
     public ShapeType shapeType;
     public Operation operation;
@@ -25,13 +25,14 @@ public class Shape : MonoBehaviour
         }
     }
 
+    /*
     public Quaternion Rotation
     {
         get
         {
             return transfrom.rotation;
         }
-    }
+    }*/
 
     public Vector3 Scale {
         get {
